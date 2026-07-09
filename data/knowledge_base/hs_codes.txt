@@ -1,0 +1,133 @@
+**HS Code Reference Guide: Textile Products Chapters 50-63**
+
+The Harmonized System (HS) is an international nomenclature for the classification of goods in international trade. Chapters 50-63 of the HS code pertain to textile products, which include cotton, man-made filaments, man-made staple fibers, woven and knitted fabrics and garments, as well as home textiles.
+
+### Chapter 52: Cotton
+
+* **Description:** This chapter includes cotton, including yarns and fabrics.
+* **Common Product Examples:**
+	+ Cotton yarns (HS: 5204) 
+	+ Cotton prints (HS: 5205)
+	+ Yarns of cotton, not carded or combed (HS: 5209)
+	+ Towels made of cotton (HS: 5212)
+* **6-digit HS Codes:**
+	+ 5201: Cotton, not carded or combed
+	+ 5202: Cotton, carded or combed
+	+ 5203: Cotton linters
+	+ 5204: Yarns of cotton
+	+ 5205: Twine, cordage, ropes and cables, and articles thereof
+	+ 5206: Knotted string or twine and articles thereof
+	+ 5207: Yarns of yarns of cotton, not put up for retail sale
+	+ 5208: Cotton wicks
+	+ 5209: Yarns of cotton, not carded or combed
+	+ 5210: Woven fabrics of cotton
+
+### Chapter 54: Man-made Filaments
+
+* **Description:** This chapter includes man-made filaments, including nylon, polyester, acrylic, and other man-made fibers.
+* **Common Product Examples:**
+	+ Nylon filament yarns (HS: 5402)
+	+ Polyester filament yarns (HS: 5404)
+	+ Acrylic filament yarns (HS: 5509)
+	+ Nylon fabric (HS: 5407)
+* **6-digit HS Codes:**
+	+ 5401: Synthetic fibres
+	+ 5402: Filaments of polyester
+	+ 5403: Filaments of polyamides, not textured
+	+ 5404: Filaments of polyamides, textured
+	+ 5405: Filaments of other polyamides, not textured
+	+ 5406: Filaments of polyesters, not textured
+	+ 5407: Films of plastics, unexposed or treated in the process of a chemical treatment operation
+
+### Chapter 55: Man-made Staple Fibres
+
+* **Description:** This chapter includes man-made staple fibers, including nylon, polyester, and other man-made fibers.
+* **Common Product Examples:**
+	+ Nylon staple fibers (HS: 5502)
+	+ Polyester staple fibers (HS: 5504)
+	+ Acrylic staple fibers (HS: 5509)
+	+ Staple fibers of nylon (HS: 5501)
+* **6-digit HS Codes:**
+	+ 5501: Staple fibres, of nylon
+	+ 5502: Staple fibres, of polyamides (polyamide staple fibres)
+	+ 5503: Staple fibres, of polyesters, not carded, combed or otherwise processed for spinning
+	+ 5504: Staple fibres, of polyesters
+	+ 5505: Staple fibres, of other polyamides (polyamide staple fibres)
+	+ 5506: Staple fibres, of acrylic or modacrylic fibres
+	+ 5509: Staple fibres of other synthetic fibres
+
+### Chapter 58: Special Woven Fabrics
+
+* **Description:** This chapter includes special woven fabrics, including lace, gauze, and other special fabrics.
+* **Common Product Examples:**
+	+ Lace (HS: 5802)
+	+ Gauze fabric (HS: 5805)
+	+ Special woven fabric with elastic threads (HS: 5802)
+* **6-digit HS Codes:**
+	+ 5801: Woven fabrics of a kind suited for industrial use, containing less than 85% by weight of silk or silk waste
+	+ 5802: Woven fabrics of silk or of silk waste other than gauze or the like of the heading
+	+ 5803: Lace, in pieces, of silk, cotton, wool or other textile materials
+	+ 5804: Tulle, netting and other textile fabrics specially prepared for industrial use, other than fabrics of heading
+	+ 5805: Woven fabrics of gauze, not elsewhere specified or included nor to heading
+
+### Chapter 60: Knitted or Crocheted Fabrics
+
+* **Description:** This chapter includes knitted or crocheted fabrics of various types.
+* **Common Product Examples:**
+	+ Knitted cotton fabric (HS: 6001)
+	+ Crocheted lace (HS: 9605)
+	+ Knitted gloves, mittens, scarves, mufflers, other articles made of cotton (HS: 6110)
+* **6-digit HS Codes:**
+	+ 6001: Textiles, other textile products and floor coverings, knitted or crochet
+	+ 6002: Knitted or crocheted fabrics of other materials
+	+ 6003: Knitted or crocheted fabrics of silk or of silk waste other than for making knitted clothing
+	+ 6004: Knitted or crocheted fabrics of a kind suited for making other garments or clothing accessories of heading 6111 to 6121
+	+ 6005: Knitted or crocheted garments of cotton (excluding gloves, mittens, scarves, mufflers)
+
+### Chapter 61: Textile Products of Knitted or Crocheted Materials
+
+* **Description:** This chapter includes knitted garments, including gloves, scarves, and other accessories.
+* **Common Product Examples:**
+	+ Cotton gloves (HS: 6110)
+	+ Knitted scarves (HS: 6111)
+	+ Knitted or crocheted textile products, other (HS: 6114)
+* **6-digit HS Codes:**
+	+ 6110: Gloves, mittens, scarves, mufflers and hoods, knitted or crocheted
+	+ 6111: Knitted clothing and clothing accessories, other than those of heading
+	+ 6112: Clothing with inner surfaces impregnated with or covered with plastics
+	+ 6113: Women's or girls' garments of synthetic or artificial fibres, knitted  or crocheted
+	+ 6114: Other knitted or crocheted garments and accessories of textile materials and articles of clothing, not covered by other Chapter 61 5-digit codes
+
+### Chapter 62: Textile Products of Woven Fabric
+
+* **Description:** This chapter includes woven garments, including men's and boys' wear.
+* **Common Product Examples:**
+	+ Cotton T-shirts (HS: 6205)
+	+ Knit T-shirts (HS: 6109)
+	+ Woven fabrics for men's wear (HS: 6211)
+* **6-digit HS Codes:**
+	+ 6202: Men's or boys' singlets
+	+ 6203: Men's or boys' underpants and underwired underpants
+	+ 6204: Women's, girls' and infants' singlets
+	+ 6205: Men's or boys' pants
+	+ 6211: Woven textiles specially designed for making men's, boys' clothing
+	+ 6212: Men's or boys' suits, overcoats, women's or girls' dresses and skirts or coats or trousers (excl. knitted)
+
+### Chapter 63: Textile Products and Yarns
+
+* **Description:** This chapter includes home textiles, including blankets, bed linen, towels, and other household items.
+* **Common Product Examples:**
+	+ Bed linen, cotton (HS: 6303)
+	+ Towels (HS: 6305)
+	+ Blankets and travel rugs, cotton (HS: 6304)
+* **6-digit HS Codes:**
+	+ 6301: Bed or table linen (excl. of knitted or crocheted fabrics)
+	+ 6302: Knitted or crocheted textiles specially designed for making blankets, travelling rugs, or similar goods
+	+ 6303: Bedding, bedding sets and bed covers of cotton and other textile fibres not including knitted or crocheted fabrics
+	+ 6304: Blankets and travelling rugs, cotton
+	+ 6305: Toilet linen (toiletries) (excl. of knitted or crocheted fabric)
+	+ 6306: Other made-up textile articles
+
+It is essential to note that HS codes and classification can change over time and may vary based on trade agreements or country-specific requirements. Consult with a trade expert or regulatory authority to ensure compliance with relevant regulations and laws.
+
+**Disclaimer:** This is a general reference guide for textile products chapters 50-63 in the Harmonized System (HS) code. Please refer to the original text for the most up-to-date information and accurate classification for specific products.

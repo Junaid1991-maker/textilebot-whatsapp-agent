@@ -1,0 +1,622 @@
+[
+  {
+    "scenario_id": "CONV001",
+    "scenario_type": "HOT_LEAD",
+    "description": "A serious German buyer wanting 10000 meters of OEKO-TEX certified cotton fabric monthly, has budget, needs delivery in 60 days, wants to book a call",
+    "buyer_name": "Hans Müller",
+    "buyer_company": "Müller Textil GmbH",
+    "buyer_country": "Germany",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hallo, ich bin auf der Suche nach einem Anbieter, der OEKO-TEX zertifizierte Baumwollstoffe liefert. Wir benötigen jährlich 12.000 Meter, verteilt auf 24 Termine à 500 Meter. Haben Sie etwas für uns?"
+      },
+      {
+        "role": "agent",
+        "message": "Hallo Herr Müller! Danke für Ihre Nachricht. Ja, wir haben verschiedene Baumwollstoffe im Sortiment, die OEKO-TEX zertifiziert sind. Könnten Sie bitte mehr über Ihre Anforderungen und Bedürfnisse erzählen? Besonders interessieren uns die Details zu Ihrem Projekt, Ihre Budgetierung und Ihre Fristen."
+      },
+      {
+        "role": "buyer",
+        "message": "Ja, natürlich. Wir benötigen die Stoffe für ein Projekt, bei dem wir Baumwolltaschen und -bezüge herstellen. Das Budget für die Stoffe beträgt max. 5 EUR pro Meter. Wir benötigen die Stoffe innerhalb der nächsten 60 Tage."
+      },
+      {
+        "role": "agent",
+        "message": "Danke für Ihre Auskünfte, Herr Müller! Wir haben einige Lösungen vorrätig, die Ihren Anforderungen entsprechen könnten. Wir würden uns freuen, wenn wir mit Ihnen einen Zeit- und Budgetplan erstellen könnten. Wie wäre es mit einem Video- oder Telefon-Call für Donnerstag? Wir können uns besser unterhalten und Ihre Anforderungen noch genauer prüfen."
+      }
+    ],
+    "expected_lead_score": 92,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV002",
+    "scenario_type": "WARM_LEAD",
+    "description": "A UK retailer interested in home textiles, asking general questions about MOQ and certifications, not ready to commit yet",
+    "buyer_name": "Emily Wilson",
+    "buyer_company": "Greenfield Home Decor",
+    "buyer_country": "United Kingdom",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, we're interested in wholesale home textiles. Can you tell me more about your minimum order quantity?"
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily, thank you for reaching out to TextileBot. Our minimum order quantity (MOQ) varies depending on the product and material. For home textiles, our MOQ is typically 100 pieces. However, this may be negotiable for larger orders. Could you please tell me more about your specific requirements and the products you're interested in?"
+      },
+      {
+        "role": "buyer",
+        "message": "That sounds reasonable. We're looking for a mix of bedding and throw blankets. Can you also tell me what certifications you have in place, such as OEKO-TEX or GOTS?"
+      },
+      {
+        "role": "agent",
+        "message": "We're glad you're interested in our home textiles Emily. We have obtained the OEKO-TEX Standard 100 certification for all our bedding and throw blankets. This certification ensures that our products meet strict safety and sustainability requirements. However, please note that GOTS certification is not applicable for all our products at this time. Would you like me to send over some product catalogs and detailed information on our certifications?"
+      }
+    ],
+    "expected_lead_score": 75,
+    "expected_status": "WARM",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV003",
+    "scenario_type": "COLD_LEAD",
+    "description": "A student doing research on textile exports, no buying intent, asking very general questions",
+    "buyer_name": "Emily Woods",
+    "buyer_company": "Sustainable Fashion Inc",
+    "buyer_country": "United Kingdom",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I'm researching textile exports for my university project and was wondering if you could provide some general information on the process."
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily, I'd be happy to help. What specifically do you want to know about textile exports?"
+      },
+      {
+        "role": "buyer",
+        "message": "Well, I'm just trying to get a general understanding of the industry. How do textile exports work, and what are some common types of textiles exported?"
+      },
+      {
+        "role": "agent",
+        "message": "Textile exports refer to the shipment of textiles and textile products from one country to another. Common types of textiles exported include cotton, wool, silk, and synthetic fibers. We also export finished products like clothing, upholstery, and bedding. Can I ask, what motivated your interest in textile exports?"
+      }
+    ],
+    "expected_lead_score": 10,
+    "expected_status": "COLD",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV004",
+    "scenario_type": "PRICE_INQUIRY",
+    "description": "An experienced US importer asking detailed questions about price per meter for denim fabric in different quantities",
+    "buyer_name": "Emily Lee",
+    "buyer_company": "Pacific Importers Inc.",
+    "buyer_country": "USA",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I'm looking to import some denim fabric for our clothing line. Can you provide me with pricing information on different quantities? I'm interested in 500 meters, 1000 meters, and 2000 meters."
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily, thanks for reaching out to us. We offer high-quality denim fabrics at competitive prices. For 500 meters, the price is $12.50 per meter. For 1000 meters, the price is $11.50 per meter, and for 2000 meters, the price is $10.50 per meter. Would you like to place an order or would you like me to send you a formal quote?"
+      },
+      {
+        "role": "buyer",
+        "message": "That sounds good. Can you provide me with the prices for different weights of denim? I'm interested in 10 oz, 12 oz, and 14 oz."
+      },
+      {
+        "role": "agent",
+        "message": "Of course, Emily. For 10 oz denim, the prices are: $12.25 per meter for 500 meters, $11.25 per meter for 1000 meters, and $10.25 per meter for 2000 meters. For 12 oz denim, the prices are: $12.50 per meter for 500 meters, $11.50 per meter for 1000 meters, and $10.50 per meter for 2000 meters. And for 14 oz denim, the prices are: $13.00 per meter for 500 meters, $12.00 per meter for 1000 meters, and $11.00 per meter for 2000 meters. Let me know if you have any other questions or if you'd like to proceed with an order."
+      }
+    ],
+    "expected_lead_score": 95,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV005",
+    "scenario_type": "CERTIFICATION_QUERY",
+    "description": "A French brand asking specifically about GOTS certification, organic cotton sourcing, and audit processes",
+    "buyer_name": "Emmanuelle Dupont",
+    "buyer_company": "La Belle Époque Co.",
+    "buyer_country": "France",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Bonjour, je m'appelle Emmanuelle et je représente La Belle Époque Co., basée à Paris. Je recherche des fournisseurs de coton biologique pour notre nouveau projet de vêtements éthiques. Pouvez-vous m'aider à comprendre les exigences GOTS ?"
+      },
+      {
+        "role": "agent",
+        "message": "Bonsoir Emmanuelle, je m'appelle Pierre et je suis votre conseiller chez TextileBot. Merci de nous avoir contactés ! Le GOTS (Global Organic Textile Standard) est effectivement une certification importante pour les textiles éthiques. Pour obtenir la certification GOTS, les fournisseurs doivent respecter une série d'exigences en matière de produit, de processus et de durabilité. Vous pouvez trouver plus d'informations sur notre site web ou je peux vous envoyer un document détaillé si vous le souhaitez ?"
+      },
+      {
+        "role": "buyer",
+        "message": "Merci pour vos explications ! Pouvez-vous me dire plus sur les processus d'audit pour obtenir la certification GOTS ?"
+      },
+      {
+        "role": "agent",
+        "message": "Bien sûr, Emmanuelle ! Les processus d'audit pour obtenir la certification GOTS impliquent généralement une inspection annuelle de votre production et un audit de votre chaîne d'approvisionnement. Nous pouvons vous aider à identifier les fournisseurs qui répondent aux exigences GOTS et à mettre en place les processus de suivi nécessaires pour maintenir la certification. Vous pouvez également vous référer à notre site web pour plus d'informations sur les exigences GOTS et les processus d'audit."
+      }
+    ],
+    "expected_lead_score": 85,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV006",
+    "scenario_type": "SAMPLE_REQUEST",
+    "description": "A Dutch buyer wanting fabric samples before placing a large order, asking about sample cost and delivery time",
+    "buyer_name": "Saskia van der Meer",
+    "buyer_company": "Meer Fashion",
+    "buyer_country": "Netherlands",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hallo, ik ben Saskia van der Meer van Meer Fashion. Ik ben op zoek naar een leverancier voor onze nieuwe collectie en kom bij toeval op uw bedrijf. Kunt u ons graag stoffenproeven sturen?"
+      },
+      {
+        "role": "agent",
+        "message": "Goedendag Saskia, bedankt voor uw interesse in TextileBot. We staan bekend om onze high-quality stoffen en kunnen graag uw eisen en wensen opvangen via stoffenproeven. De kosten hiervoor bedragen ongeveer € 20 p/stof, inclusief verzending per EMS."
+      },
+      {
+        "role": "buyer",
+        "message": "Dat klinkt goed! Hoe lang duurt het voordat wij de stoffenproeven kunnen ontvangen?"
+      },
+      {
+        "role": "agent",
+        "message": "De stoffenproeven zullen binnen 3-5 werkdagen bij u bezorgd worden, afhankelijk van het posttraject. Hebben wij toestemming om u op de hoogte te houden via e-mail wanneer ze verzonden zijn?"
+      },
+      {
+        "role": "buyer",
+        "message": "Ja, graag! Onze e-mail is info@meerfashion.nl."
+      }
+    ],
+    "expected_lead_score": 85,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV007",
+    "scenario_type": "COMPLAINT",
+    "description": "An existing customer unhappy about a delayed shipment, wants to know status and compensation",
+    "buyer_name": "Emily Wilson",
+    "buyer_company": "Green Earth Fashion",
+    "buyer_country": "United States",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I received an estimated delivery date of the 15th, but it's now the 22nd. Can you please let me know the status of my shipment and when I can expect it? I also want to know if there's any compensation for the delay."
+      },
+      {
+        "role": "agent",
+        "message": "Hi Emily, sorry to hear that your shipment is delayed. I've checked on the status of your order, and it's currently being processed. I expect it to arrive within the next 3-5 business days. Regarding compensation, I'd be happy to provide a 10% discount on your next purchase as a gesture of goodwill. Would you like me to send you a refund or add the discount to your next order?"
+      },
+      {
+        "role": "buyer",
+        "message": "Thanks for the update. I'd like the refund on this order, please. And can you also send me a tracking number so I can keep an eye on it?"
+      },
+      {
+        "role": "agent",
+        "message": "I'll process the refund and send you a tracking number right away. You should receive it in the next 24 hours. If there are any further delays, please don't hesitate to reach out. I've also added the discount to your account for your next purchase. Is everything resolved to your satisfaction?"
+      },
+      {
+        "role": "buyer",
+        "message": "Yes, thank you for your help. I appreciate the refund and the discount."
+      },
+      {
+        "role": "agent",
+        "message": "You're welcome, Emily. I'm glad I could assist you. If you have any further questions or concerns, please don't hesitate to contact us. Have a great day!"
+      }
+    ],
+    "expected_lead_score": 87,
+    "expected_status": "WARM",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV008",
+    "scenario_type": "BOOKING_REQUEST",
+    "description": "A serious buyer who has already asked questions and now explicitly wants to book a discovery call",
+    "buyer_name": "Emily Wilson",
+    "buyer_company": "Greenwood & Co.",
+    "buyer_country": "United States",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I'm interested in learning more about your services. Can we schedule a call to discuss?"
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily! I'd be happy to schedule a discovery call for you. What specific services are you looking to explore?"
+      },
+      {
+        "role": "buyer",
+        "message": "I'm interested in both textile printing and fabric finishing, but want to explore which one would be the best fit for our company's current goals."
+      },
+      {
+        "role": "agent",
+        "message": "That sounds like a great place to start. I can offer guidance on both services. Would 30 minutes on Wednesday at 2 PM EST work for you or would you prefer to schedule something else?"
+      }
+    ],
+    "expected_lead_score": 80,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV009",
+    "scenario_type": "WRONG_NUMBER",
+    "description": "Someone who messaged by mistake thinking this is a local tailor shop",
+    "buyer_name": "Emma Taylor",
+    "buyer_company": "Greenfield Marketing",
+    "buyer_country": "Australia",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I'm looking for a seamstress to fix my favorite dress, can you help?"
+      },
+      {
+        "role": "agent",
+        "message": "Good day Emma, unfortunately, we are an online textile solutions provider, not a local seamstress. However, we can offer you a range of fabric rolls and related services. Would you like to learn more?"
+      },
+      {
+        "role": "buyer",
+        "message": "Oh no, I'm really confused, I must have the wrong number. Can you give me a recommendation for a good tailor near me?"
+      },
+      {
+        "role": "agent",
+        "message": "I completely understand, Emma. I'd be happy to help you with that. Can you please share your location or area with me, so I can suggest some local tailor options?"
+      }
+    ],
+    "expected_lead_score": 25,
+    "expected_status": "COLD",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV010",
+    "scenario_type": "EXISTING_CUSTOMER",
+    "description": "A returning customer from Japan placing a repeat order similar to their last purchase",
+    "buyer_name": "Satomi Matsumoto",
+    "buyer_company": "Kokoro Fashion Co., Ltd.",
+    "buyer_country": "Japan",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Konnichiwa! Hi, it's Satomi from Kokoro Fashion in Japan. I'm due for a replenishment of our spring collection fabrics."
+      },
+      {
+        "role": "agent",
+        "message": "Konnichiwa Satomi-san! Good to hear from you. Can you please provide me with your order number so I can quickly retrieve your previous order details?"
+      },
+      {
+        "role": "buyer",
+        "message": "Ah, my order number is TXL001234. We had a big hit with the cotton voile and the silk dupioni last season. Can I get some more of those?"
+      },
+      {
+        "role": "agent",
+        "message": "Wonderful choice, Satomi-san! I've checked your previous order and I can confirm that we have the cotton voile and silk dupioni available in stock. I'll send you a confirmation email with the shipment details and a 5% discount on your repeat order."
+      }
+    ],
+    "expected_lead_score": 90,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV011",
+    "scenario_type": "LC_DOCUMENTATION",
+    "description": "A UAE importer asking detailed questions about Letter of Credit requirements and documentation",
+    "buyer_name": "Ali Ahmed Al Kuwaiti",
+    "buyer_company": "Kuwait Al Khaleej Trading LLC",
+    "buyer_country": "United Arab Emirates",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "As-salamu alaykum, my name is Ali from Kuwait Al Khaleej Trading. We are interested in importing fabric from suppliers you work with. I need to know the requirements for the Letter of Credit for our shipment."
+      },
+      {
+        "role": "agent",
+        "message": "Wa alaykum as-salam. Hello Ali. Thank you for reaching out. To ensure a smooth process, can you please provide more details about the type of fabric you want to import, shipment value, and desired delivery date?"
+      },
+      {
+        "role": "buyer",
+        "message": "Great, thank you for the information. We are looking for 10,000 meters of cotton fabric. The shipment value is around AED 150,000. We need it urgently, preferably in 20-25 days."
+      },
+      {
+        "role": "agent",
+        "message": "Thank you, Ali. For the fabric you mentioned, we would require a commercial invoice, certificate of origin, bill of lading, and a letter of credit from your bank with an Irrevocable Letter of Credit (ILC) type. Also, it might take around 18-22 days for documentation preparation, so it would be best to start the process as soon as possible."
+      }
+    ],
+    "expected_lead_score": 80,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV013",
+    "scenario_type": "INCOTERMS_QUERY",
+    "description": "A Canadian buyer confused about FOB vs CIF pricing and who pays freight",
+    "buyer_name": "Emily Wilson",
+    "buyer_company": "Canwest Inc.",
+    "buyer_country": "Canada",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi there, I'm reaching out about a potential order of some textiles we've been discussing. I was wondering if you could clarify the pricing for FOB and CIF? I'm a bit confused on who pays for freight in each case."
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily, thank you for reaching out! FOB (Free on Board) and CIF (Cost, Insurance, and Freight) are two different pricing methods used in international trade. In FOB terms, the seller delivers goods to the buyer on board a ship at the named port of departure. The buyer then takes care of the shipping and insurance. In CIF terms, the seller is responsible for delivering goods to the buyer, as well as paying for shipping and insurance until the goods reach the final destination. Based on your discussion, it seems we're looking at a CIF deal. Do you have any other questions regarding the pricing?"
+      },
+      {
+        "role": "buyer",
+        "message": "That makes sense. But can you clarify a bit further? If I go with CIF pricing, does that mean I'll be paying for the shipping as well as the goods themselves? And what types of ships would the goods be transported on?"
+      },
+      {
+        "role": "agent",
+        "message": "Yes, that's correct. With CIF pricing, you'll be paying for the shipping, insurance, and the goods themselves. As for the type of ship, we usually use a medium-sized container ship with a reliable carrier. The shipping cost varies depending on the destination port and the weight/volume of the goods. I'd be happy to provide you with a more detailed estimate. Would you like me to send you some options?"
+      }
+    ],
+    "expected_lead_score": 85,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV013",
+    "scenario_type": "MOQ_NEGOTIATION",
+    "description": "A small startup from Australia wanting to order below minimum order quantity",
+    "buyer_name": "Emily Wilson",
+    "buyer_company": "Sydney Threads",
+    "buyer_country": "Australia",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi there, I'm Emily from Sydney Threads. We're interested in your cotton fabrics. Can we discuss pricing for a small order of 100 meters? We're starting a new project and need to see if your fabrics fit our budget."
+      },
+      {
+        "role": "agent",
+        "message": "Thank you, Emily, for reaching out to TextileBot. We appreciate your interest in our cotton fabrics. Unfortunately, our minimum order quantity is 500 meters to ensure the lowest possible prices for our customers. However, we're willing to discuss a possible exception for your first order, considering your project's specific requirements. Could you please share more about your project, including the type of product you're planning to create?"
+      },
+      {
+        "role": "buyer",
+        "message": "That's a bit steep for us. We're a small startup, so we can't afford a large upfront cost. Is there any flexibility on pricing or a way to reduce the MOQ? We really love your fabrics."
+      },
+      {
+        "role": "agent",
+        "message": "I completely understand your concerns, Emily. After reviewing your request, I can offer a temporary reduction of 10% off our standard prices for your first order, provided you commit to a subsequent order within the next 6 months to reach our regular MOQ of 500 meters. This way, you'll still get the quality fabrics you need, and we'll support your growth as a new business."
+      },
+      {
+        "role": "buyer",
+        "message": "That sounds like a great compromise. We'd be interested in that deal. Can we discuss the details and perhaps get a purchase order number?"
+      },
+      {
+        "role": "agent",
+        "message": "Wonderful! I'm glad we could meet in the middle, Emily. Let me prepare a formal quote with the agreed-upon terms, and I'll send it over for your review. Once you confirm the quote, I'll provide you with a purchase order number, and we can proceed with the order."
+      }
+    ],
+    "expected_lead_score": 87,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV014",
+    "scenario_type": "RUSH_ORDER",
+    "description": "A Spanish buyer needing urgent delivery of 5000 meters within 30 days",
+    "buyer_name": "Juan Luis Gómez",
+    "buyer_company": "Diseño y Textilería S.L.",
+    "buyer_country": "España",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hola, necesito saber si puedo contar con una entrega de 5000 metros de tejido dentro de un máximo de 30 días. ¿Es posible?"
+      },
+      {
+        "role": "agent",
+        "message": "Hola Juan, gracias por contactar con nosotros. Claro que sí, tenemos capacidad para atender pedidos urgentes de tejido. ¿Cuál es la especificación exacta del tejido que necesita?"
+      },
+      {
+        "role": "buyer",
+        "message": "Necesito un tejido de algodón de calidad Premium, con un peso de 350 gr/m². ¿Cuáles son las opciones que puedo considerar para entrega a tiempo?"
+      },
+      {
+        "role": "agent",
+        "message": "Entendido Juan. Tenemos varias opciones para satisfacer su pedido. Puedo ofrecerle tejidos de algodón premium de alta calidad de nuestras fábricas en Europa y Asia. ¿Le gustaría que le enviemos una cotización específica?"
+      }
+    ],
+    "expected_lead_score": 80,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV016",
+    "scenario_type": "HS_CODE_QUERY",
+    "description": "A Belgian importer asking about correct HS codes for cotton woven fabric for customs",
+    "buyer_name": "Thibaut Dumont",
+    "buyer_company": "TDC Fashion",
+    "buyer_country": "Belgium",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Bonjour, je me nomme Thibaut Dumont. Je suis Responsable Achats chez TDC Fashion, basé en Belgique. Nous importons beaucoup de textile pour les vêtements masculins et féminins. J'ai besoin de connaître les correct HS codes pour les tissus coton faits main en Belgique."
+      },
+      {
+        "role": "agent",
+        "message": "Bonjour M. Dumont, merci de contacter notre équipe de conseillers TextileBot. Nous sommes ici pour vous aider. Pour les tissus coton faits main, les codes HS les plus pertinents sont le 5209 pour les cotonnon tissés, 5211 pour les coton tissés en plusieurs couleurs et 6411 pour les coton tissés imprimés. Puis-je vous aider à confirmer ces codes pour votre cas précis ?"
+      },
+      {
+        "role": "buyer",
+        "message": "Merci beaucoup pour votre aide. Je voulais vérifier si ces codes correspondent aux spécifications des tissus que nous importons. Est-ce que les spécifications de la couleur et la densité du tissu auraient un impact sur les codes HS ?"
+      },
+      {
+        "role": "agent",
+        "message": "Bien sûr, M. Dumont. Les spécifications de la couleur et la densité d'un tissu peuvent avoir un impact sur les codes HS. Par exemple, si vous importez un tissu 5209 avec un motif coloré, mais qui n'est pas destiné à être vendu séparément, le code HS 5211 pourrait être plus approprié. Pour la densité, les codes 5209 et 5211 couvrent les tissus avec une densité standard, tandis que 6411 s'applique aux tissus plus épais ou avec des spécifications particulières. Puis-je vous aider à clarifier les spécifications de vos importations pour une réponse plus précise ?"
+      }
+    ],
+    "expected_lead_score": 86,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV016",
+    "scenario_type": "DPP_COMPLIANCE",
+    "description": "A Swedish brand asking about Digital Product Passport requirements for textile imports",
+    "buyer_name": "Lisa Karlsson",
+    "buyer_company": "LKF Modes",
+    "buyer_country": "Sweden",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hej! Vi importerar textilprodukter från Kina och vill veta mer om Digital Product Passport. Hur fungerar det för oss?"
+      },
+      {
+        "role": "agent",
+        "message": "Hej Lisa! Digital Product Passport är ett krav för textilprodukter inom EU. Det innebär att du behöver samla in information om produkternas miljö- och hälsopåverkan. Våra textiltåg har en detaljerad guider för att hjälpa dig med processen. Kan jag skicka dem till dig?"
+      },
+      {
+        "role": "buyer",
+        "message": "Såklart! Det låter komplicerat. Kunde ni ge mig en snabb översikt över vad som krävs?"
+      },
+      {
+        "role": "agent",
+        "message": "Sure! Du måste samla in information om produkternas material, miljömärkningar och tryckfrihetsklarering. Vi har förberett en checklista för dig, vilken vi kan skicka i ett dokument. Det är gratis och ett steg i rätt riktning."
+      }
+    ],
+    "expected_lead_score": 85,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV017",
+    "scenario_type": "TRADE_SHOW_FOLLOWUP",
+    "description": "A buyer who met the exporter at a trade show following up on samples discussed",
+    "buyer_name": "Liam Chen",
+    "buyer_company": "Shanghai Fashion Co.",
+    "buyer_country": "China",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, hope everything is fine. Just wanted to follow up on our meeting at the trade show last month. We were really interested in your custom printed fabrics."
+      },
+      {
+        "role": "agent",
+        "message": "Hi Liam, thanks for reaching out. I'm glad to hear you're interested in our fabrics. Can you please tell me a bit more about your company's requirements? Are there any specific quantities or product specifications you're looking for?"
+      },
+      {
+        "role": "buyer",
+        "message": "That would be great. We're planning to order around 1000 meters for our upcoming collections. The specifications include 150gsm weight, 60% cotton, 40% polyester blend, and a water-resistant treatment. Can you also give me a quotation on the fabrics you showcased during the trade show?"
+      },
+      {
+        "role": "agent",
+        "message": "Thanks for the detailed information, Liam. I've sent the quotation to your email. We also have a small quantity of our premium fabrics available for immediate shipment, and I can offer you a 5% discount on the quoted price. Let me know if you'd like to review the offer and discuss further."
+      }
+    ],
+    "expected_lead_score": 87,
+    "expected_status": "WARM",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV018",
+    "scenario_type": "BULK_ORDER",
+    "description": "A large American retailer inquiring about pricing for a massive order of 500000 meters",
+    "buyer_name": "Emily Davis",
+    "buyer_company": "MegaMart",
+    "buyer_country": "United States",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, looking for a quote on a large order of 500000 meters of our standard cotton fabric. Could you send me some pricing options?"
+      },
+      {
+        "role": "agent",
+        "message": "Thank you for considering TextileBot for your bulk order needs, Emily! To provide you with a competitive quote, could you please provide us with a bit more information about your required specifications, such as fiber composition, weight, and texture? Additionally, could you tell me what your intended use is for this large quantity of fabric?"
+      },
+      {
+        "role": "buyer",
+        "message": "We are looking for a standard 100% cotton, 120 gsm fabric for our bedding products. We've used this type of fabric from you before, so I know the quality is good. The intended use is for our in-house bedding brand"
+      },
+      {
+        "role": "agent",
+        "message": "Thank you for providing more context, Emily! Based on your requirements, I've found a matching fabric that would meet your standards. The price for 500000 meters of 100% cotton, 120 gsm fabric would be $3.50 per meter. This quote includes a 5% discount for bulk orders and free shipping. Would you like me to send over a formal quote for your review?"
+      }
+    ],
+    "expected_lead_score": 95,
+    "expected_status": "HOT",
+    "call_booked": false,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV019",
+    "scenario_type": "FIRST_TIME_BUYER",
+    "description": "Someone completely new to textile importing asking very basic questions about the process",
+    "buyer_name": "Emily Chen",
+    "buyer_company": "HKT Exports",
+    "buyer_country": "United States",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Hi, I'm Emily from HKT Exports, a company based in the US. We're just starting out with textile importing and I'm not sure where to begin."
+      },
+      {
+        "role": "agent",
+        "message": "Hello Emily, thanks for reaching out! Welcome to TextileBot. I'd be happy to guide you through the process. Can you tell me what kinds of textiles you're interested in importing, such as fabrics, garments, or home textiles?"
+      },
+      {
+        "role": "buyer",
+        "message": "We're actually looking to import fabric for clothing and perhaps some home decor items. Could you walk me through the steps we need to take?"
+      },
+      {
+        "role": "agent",
+        "message": "That sounds like a great starting point. Here's a brief overview of the process: first, we need to source suppliers from reputable manufacturers in your desired countries of origin. Then, we'll need to negotiate prices, discuss MOQs, and finalize the order. I can provide you with a more detailed checklist and resources to get started. Would you like me to share those with you?"
+      }
+    ],
+    "expected_lead_score": 95,
+    "expected_status": "HOT",
+    "call_booked": true,
+    "escalated": false
+  },
+  {
+    "scenario_id": "CONV020",
+    "scenario_type": "SPAM",
+    "description": "An irrelevant message advertising cryptocurrency investment opportunities",
+    "buyer_name": "Emily Chen",
+    "buyer_company": "Global Supplies Inc.",
+    "buyer_country": "United States",
+    "conversation": [
+      {
+        "role": "buyer",
+        "message": "Just got back from the most amazing vacation in Bali. Did a bunch of yoga in Canggu, and the food was incredible - have you tried the Balinese satay?"
+      },
+      {
+        "role": "agent",
+        "message": "Hi Emily, thanks for reaching out. I'd be happy to help with any questions about your last trip or recommendations for your next destination. We specialize in travel experiences, not food recommendations, though"
+      },
+      {
+        "role": "buyer",
+        "message": "I've been getting these super lucrative crypto investment opportunities from some of my friends. Have you ever invested in any of these platforms?"
+      },
+      {
+        "role": "agent",
+        "message": "Emily, to be honest, we don't discuss cryptocurrency investment opportunities here at TextileBot. Our expertise lies in textile solutions, and we'd love to chat about something related to your company or its needs."
+      }
+    ],
+    "expected_lead_score": 2,
+    "expected_status": "SPAM",
+    "call_booked": false,
+    "escalated": false
+  }
+]
