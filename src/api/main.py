@@ -1,13 +1,13 @@
 # src/api/main.py
 # FastAPI backend for TextileBot WhatsApp Agent
-# This file creates the API that receives messages and returns responses
-# It wraps the entire LangGraph agent in a production-ready API
+# Fixed for Azure: ChromaDB removed, replaced with keyword search
 
 import os
 import sys
 import logging
 import json
 import uuid
+import re
 from pathlib import Path
 from typing import Optional
 from dotenv import load_dotenv
@@ -18,7 +18,7 @@ load_dotenv(Path(__file__).parent.parent.parent / ".env")
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s — %(levelname)s — %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
@@ -32,18 +32,14 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
 # AI imports
-
 from groq import Groq
-import chromadb
-from chromadb.utils import embedding_functions
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, List, Dict
-import re
 
-# ── Rate Limiter Setup ──────────────────────────────────────────
+# ── Rate Limiter Setup ──────────────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address)
 
-# ── FastAPI App Setup ───────────────────────────────────────────
+# ── FastAPI App Setup ───────────────────────────────────────────────────────
 app = FastAPI(
     title="TextileBot API",
     description="WhatsApp AI Agent for B2B Textile Businesses",
@@ -53,7 +49,6 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
-# CORS — only allow specific origins in production
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -62,24 +57,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── Pydantic Models ─────────────────────────────────────────────
+# ── Pydantic Models ─────────────────────────────────────────────────────────
 
 class MessageRequest(BaseModel):
-    """
-    Incoming message from buyer.
-    Pydantic validates all fields automatically.
-    """
     session_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     buyer_message: str = Field(..., min_length=1, max_length=1000)
     conversation_history: List[Dict] = Field(default_factory=list)
 
     @validator("buyer_message")
     def sanitize_message(cls, v):
-        """Remove HTML tags and check for injection attempts."""
-        import re
-        # Strip HTML
         v = re.sub(r"<[^>]+>", "", v)
-        # Check prompt injection
         injection_patterns = [
             r"ignore.{0,20}(instructions|prompts|rules)",
             r"system prompt",
@@ -92,9 +79,6 @@ class MessageRequest(BaseModel):
 
 
 class MessageResponse(BaseModel):
-    """
-    Response sent back to buyer.
-    """
     session_id: str
     response: str
     intent: str
@@ -105,15 +89,12 @@ class MessageResponse(BaseModel):
 
 
 class HealthResponse(BaseModel):
-    """
-    Health check response.
-    """
     status: str
     version: str
     rag_chunks: int
 
 
-# ── Agent State ─────────────────────────────────────────────────
+# ── Agent State ─────────────────────────────────────────────────────────────
 
 class AgentState(TypedDict):
     message: str
@@ -130,99 +111,65 @@ class AgentState(TypedDict):
     session_id: str
 
 
-# ── Global Variables ────────────────────────────────────────────
-# These are initialized once when the app starts
+# ── Global Variables ────────────────────────────────────────────────────────
 
-collection = None
+knowledge_base = {}   # filename -> full text content
 agent = None
 groq_api_key = None
 
 
-# ── RAG Functions ───────────────────────────────────────────────
+# ── Keyword Search (replaces ChromaDB) ─────────────────────────────────────
 
-def build_rag_system() -> chromadb.Collection:
-    """
-    Build ChromaDB collection from knowledge base files.
-    Called once at startup.
-    
-    Returns:
-        ChromaDB collection with all knowledge base chunks.
-    """
+def load_knowledge_base():
+    """Load all .txt files from knowledge_base into memory."""
+    global knowledge_base
     kb_path = Path(__file__).parent.parent.parent / "data" / "knowledge_base"
-    client = chromadb.Client()
-    embedding_fn = embedding_functions.DefaultEmbeddingFunction()
-    col = client.create_collection(
-        name="textilebot_kb",
-        embedding_function=embedding_fn
-    )
-
-    all_chunks = []
-    chunk_id = 0
-
+    knowledge_base = {}
     for txt_file in kb_path.glob("*.txt"):
         with open(txt_file, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        start = 0
-        while start < len(content):
-            end = start + 800
-            chunk = content[start:end]
-            if end < len(content):
-                boundary = max(chunk.rfind("."), chunk.rfind("\n"))
-                if boundary > 400:
-                    chunk = content[start:start + boundary + 1]
-                    end = start + boundary + 1
-            if len(chunk.strip()) > 50:
-                all_chunks.append({
-                    "id": f"chunk_{chunk_id:04d}",
-                    "text": chunk.strip(),
-                    "source": txt_file.name
-                })
-                chunk_id += 1
-            start = end - 100
-
-    batch_size = 10
-    for i in range(0, len(all_chunks), batch_size):
-        batch = all_chunks[i:i + batch_size]
-        col.add(
-            ids=[c["id"] for c in batch],
-            documents=[c["text"] for c in batch],
-            metadatas=[{"source": c["source"]} for c in batch]
-        )
-
-    logger.info(f"✓ RAG system built — {col.count()} chunks stored")
-    return col
+            knowledge_base[txt_file.name] = f.read()
+    logger.info(f"Loaded {len(knowledge_base)} knowledge base files")
 
 
-def retrieve_context(query: str, num_results: int = 3) -> str:
+def retrieve_context(query: str, num_chunks: int = 3) -> str:
     """
-    Retrieve relevant context from ChromaDB.
-    
-    Args:
-        query: Buyer question to search for.
-        num_results: Number of chunks to retrieve.
-        
-    Returns:
-        Combined context string.
+    Keyword search over knowledge base files.
+    Scores each 400-char chunk by how many query words it contains.
+    Returns top num_chunks results.
     """
-    global collection
-    results = collection.query(
-        query_texts=[query],
-        n_results=num_results,
-        include=["documents", "metadatas"]
-    )
-    parts = []
-    for i in range(len(results["documents"][0])):
-        source = results["metadatas"][0][i]["source"]
-        text = results["documents"][0][i]
-        parts.append(f"[Source: {source}]\n{text}")
+    query_words = set(query.lower().split())
+    scored_chunks = []
+
+    for filename, content in knowledge_base.items():
+        # Split into overlapping chunks of ~400 chars
+        words = content.split()
+        chunk_size = 60  # words per chunk
+        step = 40        # overlap
+        for i in range(0, max(1, len(words) - chunk_size + 1), step):
+            chunk = " ".join(words[i:i + chunk_size])
+            chunk_lower = chunk.lower()
+            score = sum(1 for w in query_words if w in chunk_lower)
+            if score > 0:
+                scored_chunks.append((score, filename, chunk))
+
+    # Sort by score descending, take top N
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    top = scored_chunks[:num_chunks]
+
+    if not top:
+        # Fallback: return first chunk of each file
+        parts = []
+        for filename, content in list(knowledge_base.items())[:2]:
+            parts.append(f"[Source: {filename}]\n{content[:400]}")
+        return "\n\n".join(parts)
+
+    parts = [f"[Source: {filename}]\n{chunk}" for _, filename, chunk in top]
     return "\n\n".join(parts)
 
 
-# ── Agent Node Functions ────────────────────────────────────────
+# ── Agent Node Functions ────────────────────────────────────────────────────
 
 def node_intent_classifier(state: AgentState) -> AgentState:
-    """Classify buyer message intent."""
     client = Groq(api_key=groq_api_key)
     try:
         response = client.chat.completions.create(
@@ -257,13 +204,11 @@ Return ONLY JSON: {"intent": "INTENT", "confidence": 0.95, "reasoning": "reason"
 
 
 def node_rag_retriever(state: AgentState) -> AgentState:
-    """Retrieve relevant context from knowledge base."""
     state["rag_context"] = retrieve_context(state["message"])
     return state
 
 
 def node_lead_qualifier(state: AgentState) -> AgentState:
-    """Extract buyer info and calculate lead score."""
     client = Groq(api_key=groq_api_key)
     history_text = "\n".join([
         f"{m['role'].upper()}: {m['content']}"
@@ -296,7 +241,6 @@ Return ONLY JSON:
         buyer_info = json.loads(text)
         state["buyer_info"] = buyer_info
 
-        # Calculate score
         score = 0
         quantity_str = str(buyer_info.get("quantity", ""))
         numbers = re.findall(r'\d+', quantity_str)
@@ -343,7 +287,6 @@ Return ONLY JSON:
 
 
 def node_response_generator(state: AgentState) -> AgentState:
-    """Generate final response using RAG context."""
     client = Groq(api_key=groq_api_key)
 
     if state["lead_status"] == "HOT":
@@ -394,7 +337,6 @@ RULES:
 
 
 def node_complaint_handler(state: AgentState) -> AgentState:
-    """Handle complaints with escalation."""
     state["escalated"] = True
     state["response"] = (
         "I sincerely apologize for the inconvenience. "
@@ -406,13 +348,11 @@ def node_complaint_handler(state: AgentState) -> AgentState:
 
 
 def node_spam_filter(state: AgentState) -> AgentState:
-    """Silently reject spam."""
     state["response"] = ""
     return state
 
 
 def route_after_intent(state: AgentState) -> str:
-    """Route to correct node based on intent."""
     if state["intent"] == "COMPLAINT":
         return "complaint_handler"
     elif state["intent"] == "SPAM":
@@ -422,13 +362,6 @@ def route_after_intent(state: AgentState) -> str:
 
 
 def build_agent():
-    """
-    Build and compile the LangGraph agent.
-    Called once at startup.
-    
-    Returns:
-        Compiled LangGraph agent.
-    """
     graph = StateGraph(AgentState)
 
     graph.add_node("intent_classifier", node_intent_classifier)
@@ -459,68 +392,51 @@ def build_agent():
     return graph.compile()
 
 
-# ── Startup Event ───────────────────────────────────────────────
+# ── Startup Event ───────────────────────────────────────────────────────────
 
 @app.on_event("startup")
 async def startup_event():
-    """
-    Initialize RAG system and agent when API starts.
-    This runs once — not on every request.
-    """
-    global collection, agent, groq_api_key
+    global agent, groq_api_key
 
     groq_api_key = os.getenv("GROQ_API_KEY")
     if not groq_api_key:
-        logger.error("✗ GROQ_API_KEY not found")
+        logger.error("GROQ_API_KEY not found")
         raise RuntimeError("GROQ_API_KEY not set")
 
-    logger.info("Building RAG system...")
-    collection = build_rag_system()
+    logger.info("Loading knowledge base...")
+    load_knowledge_base()
 
     logger.info("Building agent...")
     agent = build_agent()
 
-    logger.info("✓ TextileBot API ready")
+    logger.info("TextileBot API ready")
 
 
-# ── API Endpoints ───────────────────────────────────────────────
+# ── API Endpoints ───────────────────────────────────────────────────────────
 
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
-    """
-    Health check endpoint.
-    Use this to verify the API is running correctly.
-    """
-    global collection
     return HealthResponse(
         status="healthy",
         version="1.0.0",
-        rag_chunks=collection.count() if collection else 0
+        rag_chunks=len(knowledge_base)
     )
 
 
 @app.post("/respond", response_model=MessageResponse)
 @limiter.limit("10/minute")
 async def respond(request: Request, message_request: MessageRequest):
-    """
-    Main endpoint — receives buyer message and returns agent response.
-    
-    Rate limited to 10 requests per minute per IP.
-    Input is validated by Pydantic before reaching this function.
-    """
     global agent
 
     if not agent:
         raise HTTPException(status_code=503, detail="Agent not initialized")
 
-    # Add current message to history
     conversation_history = message_request.conversation_history.copy()
     conversation_history.append({
         "role": "buyer",
         "content": message_request.buyer_message
     })
 
-    # Build initial state
     initial_state: AgentState = {
         "message": message_request.buyer_message,
         "conversation_history": conversation_history,
@@ -540,9 +456,9 @@ async def respond(request: Request, message_request: MessageRequest):
         final_state = agent.invoke(initial_state)
 
         logger.info(
-            f"Session {message_request.session_id} — "
-            f"Intent: {final_state['intent']} — "
-            f"Score: {final_state['lead_score']} — "
+            f"Session {message_request.session_id} - "
+            f"Intent: {final_state['intent']} - "
+            f"Score: {final_state['lead_score']} - "
             f"Status: {final_state['lead_status']}"
         )
 
@@ -563,17 +479,13 @@ async def respond(request: Request, message_request: MessageRequest):
 
 @app.get("/leads")
 async def get_leads():
-    """
-    Return summary of leads processed.
-    In production this would query Google Sheets.
-    """
     return {
-        "message": "Lead data endpoint — connect to Google Sheets in production",
+        "message": "Lead data endpoint - connect to Google Sheets in production",
         "status": "ok"
     }
 
 
-# ── Run the API ─────────────────────────────────────────────────
+# ── Run the API ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     import uvicorn
