@@ -110,7 +110,7 @@ def make_nodes(groq_api_key: str, kb: dict):
         client = Groq(api_key=groq_api_key)
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="qwen/qwen3.8-27b",
                 messages=[
                     {"role": "system", "content": """Classify buyer message into ONE of:
 GREETING, PRODUCT_INQUIRY, PRICE_INQUIRY, CERTIFICATION_QUERY,
@@ -145,7 +145,7 @@ Return ONLY JSON: {"intent": "INTENT", "confidence": 0.95, "reasoning": "reason"
         ])
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="qwen/qwen3.8-27b",
                 messages=[
                     {"role": "system", "content": """Extract buyer info from conversation.
 Return ONLY JSON:
@@ -216,7 +216,7 @@ Return ONLY JSON:
         ])
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="qwen/qwen3.8-27b",
                 messages=[
                     {"role": "system", "content": f"""You are TextileBot for a Pakistani textile export company.
 CONTEXT:
