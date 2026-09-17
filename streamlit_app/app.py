@@ -190,13 +190,13 @@ Return ONLY JSON:
             budget = str(buyer_info.get("budget", "")).lower()
             if budget and budget not in ["unknown",""]: score += 20
 
-            state["lead_score"] = score
             message_lower = state["message"].lower()
             urgent_keywords = ["this week","ready to order","ready to place","confirm availability","urgent","asap","immediately","place order","finalizing"]
             if any(kw in message_lower for kw in urgent_keywords): score += 20
             intent_keywords = ["ready to order","place order","confirm","this week","best price","send proforma","lc ready"]
             if any(kw in message_lower for kw in intent_keywords): score += 15
             if "uae" in message_lower or "dubai" in message_lower or "saudi" in message_lower or "qatar" in message_lower or "kuwait" in message_lower: score += 20
+            state["lead_score"] = score
             state["lead_status"] = "HOT" if score >= 75 else "WARM" if score >= 45 else "COLD"
         except Exception as e:
             state["buyer_info"] = {}
