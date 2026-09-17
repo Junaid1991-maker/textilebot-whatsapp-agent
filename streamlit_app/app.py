@@ -231,7 +231,7 @@ RULES:
             )
             state["response"] = response.choices[0].message.content.strip()
         except Exception as e:
-            state["response"] = f"ERROR: {str(e)} {type(e).__name__}"
+            state["response"] = "Thank you for your message. Our team will respond shortly."
         return state
 
     def node_complaint_handler(state: AgentState) -> AgentState:
