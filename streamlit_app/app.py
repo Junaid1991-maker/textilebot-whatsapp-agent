@@ -128,7 +128,7 @@ Return ONLY JSON: {"intent": "INTENT", "confidence": 0.95, "reasoning": "reason"
             result = json.loads(text)
             state["intent"] = result["intent"]
             state["intent_confidence"] = result["confidence"]
-        except Exception:
+        except Exception as e:
             state["intent"] = "COMPLEX"
             state["intent_confidence"] = 0.5
         return state
@@ -192,7 +192,7 @@ Return ONLY JSON:
 
             state["lead_score"] = score
             state["lead_status"] = "HOT" if score >= 80 else "WARM" if score >= 50 else "COLD"
-        except Exception:
+        except Exception as e:
             state["buyer_info"] = {}
             state["lead_score"] = 0
             state["lead_status"] = "COLD"
@@ -230,8 +230,8 @@ RULES:
                 max_tokens=400, timeout=30,
             )
             state["response"] = response.choices[0].message.content.strip()
-        except Exception:
-            state["response"] = "Thank you for your message. Our team will respond shortly."
+        except Exception as e:
+            state["response"] = f"ERROR: {str(e)} {type(e).__name__}"
         return state
 
     def node_complaint_handler(state: AgentState) -> AgentState:
