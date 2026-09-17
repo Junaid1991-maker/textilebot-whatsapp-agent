@@ -165,33 +165,49 @@ Return ONLY JSON:
                     text = text[4:]
             buyer_info = json.loads(text)
             state["buyer_info"] = buyer_info
+score = 0
 
-            score = 0
-            numbers = re.findall(r'\d+', str(buyer_info.get("quantity", "")))
-            if numbers:
-                qty = int(numbers[0])
-                if qty >= 5000: score += 30
-                elif qty >= 1000: score += 15
-                elif qty > 0: score += 5
+# Quantity scoring (max 30)
+numbers = re.findall(r'\d+', str(buyer_info.get("quantity", "")))
+if numbers:
+    qty = int(numbers[0])
+    if qty >= 10000: score += 30
+    elif qty >= 5000: score += 25
+    elif qty >= 1000: score += 15
+    elif qty > 0: score += 5
 
-            country = str(buyer_info.get("country", "")).lower()
-            premium = ["germany","uk","united kingdom","united states","usa",
-                       "france","italy","netherlands","sweden","denmark",
-                       "belgium","canada","australia","japan"]
-            if any(m in country for m in premium): score += 20
-            elif country and country != "unknown": score += 10
+# Market/country scoring (max 20)
+country = str(buyer_info.get("country", "")).lower()
+premium = ["germany","uk","united kingdom","united states","usa",
+           "france","italy","netherlands","sweden","denmark",
+           "belgium","canada","australia","japan","uae","dubai",
+           "saudi arabia","qatar","kuwait"]
+if any(m in country for m in premium): score += 20
+elif country and country != "unknown": score += 10
 
-            cert = str(buyer_info.get("certification", "")).lower()
-            if cert and cert not in ["none","unknown",""]: score += 15
+# Certification scoring (max 15)
+cert = str(buyer_info.get("certification", "")).lower()
+if cert and cert not in ["none","unknown",""]: score += 15
 
-            timeline = str(buyer_info.get("timeline", "")).lower()
-            if timeline and timeline not in ["unknown",""]: score += 15
+# Timeline + urgency scoring (max 20)
+timeline = str(buyer_info.get("timeline", "")).lower()
+message_lower = state["message"].lower()
+urgent_keywords = ["this week","ready to order","ready to place","confirm availability",
+                   "urgent","asap","immediately","place order","finalizing"]
+if any(kw in message_lower for kw in urgent_keywords): score += 20
+elif timeline and timeline not in ["unknown",""]: score += 10
 
-            budget = str(buyer_info.get("budget", "")).lower()
-            if budget and budget not in ["unknown",""]: score += 20
+# Purchase intent scoring (max 15)
+intent_keywords = ["ready to order","place order","confirm","finalize","this week",
+                   "best price","send proforma","pi needed","lc ready"]
+if any(kw in message_lower for kw in intent_keywords): score += 15
 
-            state["lead_score"] = score
-            state["lead_status"] = "HOT" if score >= 80 else "WARM" if score >= 50 else "COLD"
+# Budget scoring (max 15)
+budget = str(buyer_info.get("budget", "")).lower()
+if budget and budget not in ["unknown",""]: score += 15
+
+state["lead_score"] = score
+state["lead_status"] = "HOT" if score >= 75 else "WARM" if score >= 45 else "COLD"
         except Exception as e:
             state["buyer_info"] = {}
             state["lead_score"] = 0
