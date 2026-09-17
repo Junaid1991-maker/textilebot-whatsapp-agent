@@ -258,7 +258,7 @@ RULES:
 
 @st.cache_resource
 def build_agent():
-    groq_api_key = os.environ.get("GROQ_API_KEY", "")
+    groq_api_key = os.environ.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY") or ""
     kb = load_knowledge_base()
     (node_intent_classifier, node_rag_retriever, node_lead_qualifier,
      node_response_generator, node_complaint_handler, node_spam_filter,
